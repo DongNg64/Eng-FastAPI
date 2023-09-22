@@ -1,0 +1,12 @@
+services:
+  web: 
+    build: .
+    restart: always
+    command: uvicorn --host 0.0.0.0 main:app
+    ports: 
+      - "8000:8000"
+    networks:
+      - eng-network
+
+networks:
+  eng-network:
