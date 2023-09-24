@@ -10,9 +10,9 @@ class User(Base):
     id = Column(String, primary_key=True, index=True)
     full_name = Column(String)
     email = Column(String, unique=True)
+    avatar_url = Column(String)
     hashed_password = Column(String)
     role_id = Column(String, ForeignKey("roles.id"))
-    is_active = Column(Boolean, default=True)
     created_date = Column(Integer)
 
 
