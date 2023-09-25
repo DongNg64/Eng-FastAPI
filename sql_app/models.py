@@ -1,5 +1,6 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, DateTime
 from sqlalchemy.orm import relationship
+import datetime
 
 from .database import Base
 
@@ -13,7 +14,7 @@ class User(Base):
     avatar_url = Column(String)
     hashed_password = Column(String)
     role_id = Column(String, ForeignKey("roles.id"))
-    created_date = Column(Integer)
+    created_date =  Column(DateTime, default=datetime.datetime.now())
 
 
 class Role(Base):
@@ -23,7 +24,7 @@ class Role(Base):
     key = Column(String)
     name = Column(String)
     description = Column(String)
-    created_date = Column(Integer)
+    created_date = Column(DateTime, default=datetime.datetime.now())
 
 class Permission(Base):
     __tablename__ = "permissions"
@@ -32,7 +33,7 @@ class Permission(Base):
     key = Column(String)
     name = Column(String)
     resource = Column(String)
-    created_date = Column(Integer)
+    created_date = Column(DateTime, default=datetime.datetime.now())
 
 
 class RolePermission(Base):
