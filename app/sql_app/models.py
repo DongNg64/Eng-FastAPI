@@ -8,40 +8,40 @@ from .database import Base
 class User(Base):
     __tablename__ = "users"
 
-    id = Column(String, primary_key=True, index=True)
-    full_name = Column(String)
-    email = Column(String, unique=True)
-    avatar_url = Column(String)
-    hashed_password = Column(String)
-    role_id = Column(String, ForeignKey("roles.id"))
+    id = Column(String(50), primary_key=True, index=True)
+    full_name = Column(String(255))
+    email = Column(String(100), unique=True)
+    avatar_url = Column(String(255))
+    hashed_password = Column(String(255))
+    role_id = Column(String(50), ForeignKey("roles.id"))
     created_date =  Column(DateTime, default=datetime.datetime.now())
 
 
 class Role(Base):
     __tablename__ = "roles"
 
-    id = Column(String, primary_key=True, index=True)
-    key = Column(String)
-    name = Column(String)
-    description = Column(String)
+    id = Column(String(50), primary_key=True, index=True)
+    key = Column(String(255))
+    name = Column(String(255))
+    description = Column(String(255))
     created_date = Column(DateTime, default=datetime.datetime.now())
 
 class Permission(Base):
     __tablename__ = "permissions"
 
-    id = Column(String, primary_key=True, index=True)
-    key = Column(String)
-    name = Column(String)
-    resource = Column(String)
+    id = Column(String(50), primary_key=True, index=True)
+    key = Column(String(255))
+    name = Column(String(255))
+    resource = Column(String(500))
     created_date = Column(DateTime, default=datetime.datetime.now())
 
 
 class RolePermission(Base):
-    __table__ = "role_permission"
+    __tablename__ = "role_permission"
 
-    id = Column(String, primary_key=True, index=True)
-    role_id = Column(String, ForeignKey("roles.id"))
-    permission = Column(String, ForeignKey("permissions.id"))
+    id = Column(String(50), primary_key=True, index=True)
+    role_id = Column(String(50), ForeignKey("roles.id"))
+    permission = Column(String(50), ForeignKey("permissions.id"))
 
 
 # class Item(Base):
