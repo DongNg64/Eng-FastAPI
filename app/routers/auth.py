@@ -1,5 +1,5 @@
 import uuid
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Request
 from app.schema.base import RequestSchema, ResponseSchema
 from app.schema.auth import LoginRequest, SignupRequest
 from sqlalchemy.orm import Session
@@ -10,7 +10,7 @@ from app.sql_app.models import User
 from datetime import datetime
 from fastapi_jwt_auth import AuthJWT
 
-from app.utils import SECRET_KEY, REFRESH_SECRET_KEY, ALGORITHM, ACCESS_TOKEN_EXPIRE_MINUTES, REFRESH_TOKEN_EXPIRE_MINUTES
+from app.utils import SECRET_KEY, REFRESH_SECRET_KEY, ALGORITHM, ACCESS_TOKEN_EXPIRE_MINUTES, REFRESH_TOKEN_EXPIRE_MINUTES, auth_required
 
 router = APIRouter()
 
@@ -78,3 +78,10 @@ async def refresh(Authorize: AuthJWT = Depends()):
         error_message = str(error.args)
         print(error_message)
         return ResponseSchema(code="500", status="Internal Server Error", message="Internal Server Error")
+    
+
+@router.get('/test/{wdk}')
+async def test(dependencies=Depends(auth_required)):
+    # a = authorization_require()
+    # return a
+    return 'ok'

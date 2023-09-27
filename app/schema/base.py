@@ -24,3 +24,5 @@ class TokenResponse(BaseModel):
     token_type: str
 
 
+class RedisSchema(BaseModel):
+    permissions: json()

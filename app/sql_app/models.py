@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, DateTime
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, DateTime, Text
 from sqlalchemy.orm import relationship
 import datetime
 
@@ -13,6 +13,7 @@ class User(Base):
     email = Column(String(100), unique=True)
     avatar_url = Column(String(255))
     hashed_password = Column(String(255))
+    type = Column(String(50))
     role_id = Column(String(50), ForeignKey("roles.id"))
     created_date =  Column(DateTime, default=datetime.datetime.now())
 
@@ -42,6 +43,12 @@ class RolePermission(Base):
     id = Column(String(50), primary_key=True, index=True)
     role_id = Column(String(50), ForeignKey("roles.id"))
     permission = Column(String(50), ForeignKey("permissions.id"))
+
+
+class Redis(Base):
+    id = Column(String(50), primary_key=True, index=True)
+    user_id = Column(String(50))
+    permissions = Column(Text)
 
 
 # class Item(Base):
