@@ -4,141 +4,121 @@
             "id": "f4f958cf-7a3b-4227-a7d1-e6495d30dfd6",
             "key": "",
             "name": "",
-            "resource": "get/api/v1/manage/listening",
-            "created_date": 1695456792
+            "resource": "get/api/v1/manage/listening"
         },
         {
             "id": "1b8f608d-3ed5-40ae-b77a-edd16785bc0e",
             "key": "",
             "name": "",
-            "resource": "get/api/v1/manage/listening/{listening_id}",
-            "created_date": 16954567921
+            "resource": "get/api/v1/manage/listening/{listening_id}"
         },
         {
             "id": "e3039c9e-d2bc-4b94-8541-acdb2c76fc6e",
             "key": "",
             "name": "",
-            "resource": "put/api/v1/manage/listening/{listening_id}",
-            "created_date": 1695456792
+            "resource": "put/api/v1/manage/listening/{listening_id}"
         },
         {
             "id": "5afafc50-7df1-4c26-b59b-562575c284cb",
             "key": "",
             "name": "",
-            "resource": "post/api/v1/manage/listening",
-            "created_date": 1695456792
+            "resource": "post/api/v1/manage/listening"
         },
         {
             "id": "cfe03d8c-4b7d-422f-8238-92d473ae01f0",
             "key": "",
             "name": "",
-            "resource": "delete/api/v1/manage/listening/{listening_id}",
-            "created_date": 1695456792
+            "resource": "delete/api/v1/manage/listening/{listening_id}"
         },
         {
             "id": "aefaf6a5-80bf-48e9-8535-38b491c0ffaf",
             "key": "",
             "name": "",
-            "resource": "get/api/v1/manage/speaking",
-            "created_date": 1695456792
+            "resource": "get/api/v1/manage/speaking"
         },
         {
             "id": "38cbc199-50fe-4224-8578-e23dbd730512",
             "key": "",
             "name": "",
-            "resource": "get/api/v1/manage/speaking/{speaking_id}",
-            "created_date": 1695456792
+            "resource": "get/api/v1/manage/speaking/{speaking_id}"
         },
         {
             "id": "40e958b8-a71c-4ed4-b766-a8c289bd65cd",
             "key": "",
             "name": "",
-            "resource": "put/api/v1/manage/speaking/{speaking_id}",
-            "created_date": 1695456792
+            "resource": "put/api/v1/manage/speaking/{speaking_id}"
         },
         {
             "id": "c92d1f42-349b-4343-a28a-d17cc9a55de0",
             "key": "",
             "name": "",
-            "resource": "post/api/v1/manage/speaking",
-            "created_date": 1695456792
+            "resource": "post/api/v1/manage/speaking"
         },
         {
             "id": "bff4c5be-0365-4775-a9b7-33be40aec62c",
             "key": "",
             "name": "",
-            "resource": "delete/api/v1/manage/speaking/{speaking_id}",
-            "created_date": 1695456792
+            "resource": "delete/api/v1/manage/speaking/{speaking_id}"
         },
         {
             "id": "eb885702-3992-41ee-8226-6ad720bbe9d6",
             "key": "",
             "name": "",
-            "resource": "get/api/v1/manage/reading",
-            "created_date": 1695456792
+            "resource": "get/api/v1/manage/reading"
         },
         {
             "id": "50f50858-09bc-4cb1-a508-81a2296269a4",
             "key": "",
             "name": "",
-            "resource": "get/api/v1/manage/reading/{reading_id}",
-            "created_date": 1695456792
+            "resource": "get/api/v1/manage/reading/{reading_id}"
         },
         {
             "id": "319c331b-053b-454b-9420-d795325282bf",
             "key": "",
             "name": "",
-            "resource": "put/api/v1/manage/reading/{reading_id}",
-            "created_date": 1695456792
+            "resource": "put/api/v1/manage/reading/{reading_id}"
         },
         {
             "id": "15e82dcf-5724-4d41-bd78-f3f17e659484",
             "key": "",
             "name": "",
-            "resource": "post/api/v1/manage/reading",
-            "created_date": 1695456792
+            "resource": "post/api/v1/manage/reading"
         },
         {
             "id": "0e382a6e-f75a-468b-bf16-eb08830632c7",
             "key": "",
             "name": "",
-            "resource": "delete/api/v1/manage/reading/{reading_id}",
-            "created_date": 1695456792
+            "resource": "delete/api/v1/manage/reading/{reading_id}"
         },
         {
             "id": "881e8491-632b-4c03-afa0-6198851d5a81",
             "key": "",
             "name": "",
-            "resource": "get/api/v1/manage/writing",
-            "created_date": 1695456792
+            "resource": "get/api/v1/manage/writing"
         },
         {
             "id": "5373bfaf-677b-4b73-ad9d-9e4f7df702f9",
             "key": "",
             "name": "",
-            "resource": "get/api/v1/manage/writing/{writing_id}",
-            "created_date": 1695456792
+            "resource": "get/api/v1/manage/writing/{writing_id}"
         },
         {
             "id": "63c35852-af3e-474f-9412-adce86af0f2b",
             "key": "",
             "name": "",
-            "resource": "put/api/v1/manage/writing/{writing_id}",
-            "created_date": 1695456792
+            "resource": "put/api/v1/manage/writing/{writing_id}"
         },
         {
             "id": "db154cb0-3a54-4c51-9dc8-e840210b0f6b",
             "key": "",
             "name": "",
-            "resource": "post/api/v1/manage/writing",
-            "created_date": 1695456792
+            "resource": "post/api/v1/manage/writing"
         },
         {
             "id": "e64c0a6b-375f-4104-9bf8-d1a8c0d82a55",
             "key": "",
             "name": "",
-            "resource": "delete/api/v1/manage/writing/{writing_id}",
-            "created_date": 1695456792
+            "resource": "delete/api/v1/manage/writing/{writing_id}"
         }
     ],
 
@@ -146,32 +126,27 @@
         {
             "id": "eef4e39a-a6f9-47c5-80e4-7bfacc690de9",
             "key": "",
-            "name": "Quyền của superadmin",
-            "created_date": 1695456792
+            "name": "Quyền của superadmin"
         },
         {
             "id": "c837b2ff-944c-489a-9254-4d23b81de523",
             "key": "quan-ly-nghe",
-            "name": "Quyền quản lý nghe",
-            "created_date": 1695456792
+            "name": "Quyền quản lý nghe"
         },
         {
             "id": "83141b60-3592-4540-b7ec-146b21657f4c",
             "key": "quan-ly-noi",
-            "name": "Quyền quản lý nói",
-            "created_date": 1695456792
+            "name": "Quyền quản lý nói"
         },
         {
             "id": "5c5c69d6-1393-4ddd-bcab-32e851b6c16c",
             "key": "quan-ly-doc",
-            "name": "Quyền quản lý đọc",
-            "created_date": 1695456792
+            "name": "Quyền quản lý đọc"
         },
         {
             "id": "516e4a90-4527-4a27-9fc0-ca6885495015",
             "key": "quan-ly-viet",
-            "name": "Quyền quản lý viết",
-            "created_date": 1695456792
+            "name": "Quyền quản lý viết"
         }
     ],
     "role_permission": [
@@ -383,45 +358,44 @@
             "full_name": "supper admin",
             "email": "supperadmin@gmail.com",
             "avartar_url": "avartar_url",
-            "hashed_password": "hashed_password",
-            "role_id": "role_id",
-            "created_date": 1695456792
+            "hashed_password": "$2b$12$hvKKBU7hwJPMIsynFp1zJuSPjHolrhzr7wE2KwbG3WytRan1DZr3G",
+            "role_id": "eef4e39a-a6f9-47c5-80e4-7bfacc690de9"
         },
         {
             "id":  "01a09778-f3fa-4bbb-b6cc-f4349479acd3",
             "full_name": "admin quản lý nghe",
             "email": "adminnghe@gmail.com",
             "avartar_url": "avartar_url",
-            "hashed_password": "hashed_password",
-            "role_id": "role_id",
-            "created_date": 1695456792
+            "hashed_password": "$2b$12$hvKKBU7hwJPMIsynFp1zJuSPjHolrhzr7wE2KwbG3WytRan1DZr3G",
+            "role_id": "c837b2ff-944c-489a-9254-4d23b81de523",
+            "type": "admin-role"
         },
         {
-            "id":  "7409acdd-9712-48f4-a392-d28229372371",
-            "full_name": "sadmin quản lý nói",
+            "id":  "c4d68780-22fd-4c1f-a4f7-fd5f0cbb8198",
+            "full_name": "admin quản lý nói",
             "email": "adminnoi@gmail.com",
             "avartar_url": "avartar_url",
-            "hashed_password": "hashed_password",
-            "role_id": "role_id",
-            "created_date": 1695456792
+            "hashed_password": "$2b$12$hvKKBU7hwJPMIsynFp1zJuSPjHolrhzr7wE2KwbG3WytRan1DZr3G",
+            "role_id": "83141b60-3592-4540-b7ec-146b21657f4c",
+            "type": "admin-role"
         },
         {
-            "id":  "7409acdd-9712-48f4-a392-d28229372371",
+            "id":  "4b108405-4e0d-4f6a-a1db-f4faae1c11dc",
             "full_name": "admin quản lý đọc",
             "email": "admindoc@gmail.com",
             "avartar_url": "avartar_url",
-            "hashed_password": "hashed_password",
-            "role_id": "role_id",
-            "created_date": 1695456792
+            "hashed_password": "$2b$12$hvKKBU7hwJPMIsynFp1zJuSPjHolrhzr7wE2KwbG3WytRan1DZr3G",
+            "role_id": "5c5c69d6-1393-4ddd-bcab-32e851b6c16c",
+            "type": "admin-role"
         },
         {
-            "id":  "7409acdd-9712-48f4-a392-d28229372371",
+            "id":  "d84e849a-6a0d-41cf-aaba-85f30ef77bbc",
             "full_name": "admin quản lý viết",
             "email": "adminviet@gmail.com",
             "avartar_url": "avartar_url",
-            "hashed_password": "hashed_password",
-            "role_id": "role_id",
-            "created_date": 1695456792
+            "hashed_password": "$2b$12$hvKKBU7hwJPMIsynFp1zJuSPjHolrhzr7wE2KwbG3WytRan1DZr3G",
+            "role_id": "516e4a90-4527-4a27-9fc0-ca6885495015",
+            "type": "admin-role"
         }
     ]
 }
