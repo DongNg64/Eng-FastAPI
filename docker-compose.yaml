@@ -1,4 +1,13 @@
 services:
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: admin12345
+    ports:
+      - "3306:3306"
+    networks:
+      - eng-network
   web: 
     build: .
     restart: always

@@ -34,13 +34,21 @@ class Permission(Base):
     name = Column(String(255))
     resource = Column(String(500))
 
+    role_permissions = relationship("RolePermission", back_populates="permissions")
+
 
 class RolePermission(Base):
     __tablename__ = "role_permission"
 
     id = Column(String(50), primary_key=True, index=True)
     role_id = Column(String(50), ForeignKey("roles.id"))
-    permission = Column(String(50), ForeignKey("permissions.id"))
+    permission_id = Column(String(50), ForeignKey("permissions.id"))
+
+    # @property
+    # def permissions(self):
+    permissions = relationship("Permission", back_populates="role_permissions")
+        
+
 
     # permissions = relationship("Permission", back_populates="items")
 

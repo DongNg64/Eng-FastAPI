@@ -4,5 +4,6 @@ mysqlclient
 bcrypt
 fastapi==0.99.1
 fastapi_jwt_auth==0.5.0
-pydantic==1.10.11
+pydantic
 passlib
+fastapi-mail==1.3.1

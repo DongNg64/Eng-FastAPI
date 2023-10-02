@@ -1,17 +1,17 @@
+import json
 import uuid
 from fastapi import APIRouter, Depends, Request
 from app.schema.base import RedisSaveSchema, RequestSchema, ResponseSchema
-from app.schema.auth import LoginRequest, SignupRequest
+from app.schema.auth import LoginRequest, RolePermissionSchema, SignupRequest
 from sqlalchemy.orm import Session
 from app.sql_app.database import get_db
 from passlib.context import CryptContext
-from app.repository import UserRepo
+from app.repository import BaseRepo, RedisRepo, UserRepo
 from app.sql_app.models import Redis, User, RolePermission
 from datetime import datetime
 from fastapi_jwt_auth import AuthJWT
 
-from app.utils import SECRET_KEY, REFRESH_SECRET_KEY, ALGORITHM, ACCESS_TOKEN_EXPIRE_MINUTES, \
-    REFRESH_TOKEN_EXPIRE_MINUTES, auth_required
+from app.utils import ALGORITHM, auth_required, send_mail
 
 router = APIRouter()
 
@@ -35,8 +35,11 @@ async def signup(request: SignupRequest, db: Session = Depends(get_db)):
                      email=request.email,
                      avatar_url=request.avatar_url,
                      hashed_password=pwd_context.hash(request.password),
+                     type="user-role",
                      created_date=datetime.now())
         UserRepo.insert(db, _user)
+        # send mail when signup success
+        send_mail()
         return ResponseSchema(code="200", status="Ok", message="Success save data")
     except Exception as error:
         print(error.args)
@@ -53,15 +56,16 @@ async def login(request: LoginRequest, db: Session = Depends(get_db),
 
         if _user is None or not pwd_context.verify(password, _user.hashed_password):
             return ResponseSchema(code="400", status="Bad Request", message="Invalid password")
-        ets = db.query(RolePermission).filter(RolePermission.role_id == _user.role_id).all()
         another_claims = {"user_id": _user.id}
         access_token = Authorize.create_access_token(subject=_user.email, algorithm=ALGORITHM,
-                                                     expires_time=ACCESS_TOKEN_EXPIRE_MINUTES,
                                                      user_claims=another_claims)
-        refresh_token = Authorize.create_refresh_token(_user.email, algorithm=ALGORITHM,
-                                                       expires_time=REFRESH_TOKEN_EXPIRE_MINUTES)
-        # permissions =
-        redis = Redis(id=str(uuid.uuid4()), user_id=_user.id, permissions=permissions)
+        refresh_token = Authorize.create_refresh_token(_user.email, algorithm=ALGORITHM)
+        permissions = get_permissions_of_user(role_id=_user.role_id, db=db)
+        redis = Redis(id=str(uuid.uuid4()), user_id=_user.id, permissions=json.dumps(permissions))
+        redis_exist = db.query(Redis).filter(Redis.user_id == _user.id).first()
+        if redis_exist is not None:
+            RedisRepo.delete(db, redis_exist)
+        RedisRepo.insert(db, redis)
         token = {
             "access_token": access_token,
             "refresh_token": refresh_token
@@ -86,12 +90,22 @@ async def refresh(Authorize: AuthJWT = Depends()):
         return ResponseSchema(code="500", status="Internal Server Error", message="Internal Server Error")
 
 
-@router.get('/test/{wdk}')
-async def test(dependencies=Depends(auth_required)):
-    # a = authorization_require()
-    # return a
-    return 'ok'
+
+@router.get('test')
+async def test(check: bool = Depends(auth_required)):
+    check_auth_valid(check)
+    print('oke')
+
 
 
 def get_permissions_of_user(role_id: str, db: Session = Depends(get_db)):
-    ets = db.query(RolePermission).filter(RolePermission.role_id == role_id).all()
+    role_permission = db.query(RolePermission).filter(RolePermission.role_id == role_id).all()
+    permissions = [item.permissions.resource for item in role_permission]
+    return permissions
+
+
+def check_auth_valid(check: bool):
+    if check is False:
+        return ResponseSchema(code="400", status="Error", message="You do not permission")
+    
+

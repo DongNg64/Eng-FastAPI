@@ -2,7 +2,6 @@ from typing import TypeVar, Generic, Optional
 from sqlalchemy.orm import Session
 
 from datetime import datetime, timedelta
-from jose import JWTError, jwt
 
 # from app.sql_app.database import SECRET_KEY, ALGORITHM
 
@@ -20,8 +19,12 @@ class BaseRepo():
         return db.query(model).all()
 
     @staticmethod
-    def retrieve_by_id(db: Session, model: Generic[T], id: int):
+    def retrieves_by_id(db: Session, model: Generic[T], id: int):
         return db.query(model).filter(model.id == id).all()
+    
+    @staticmethod
+    def retrieve_by_id(db: Session, model: Generic[T], id: int):
+        return db.query(model).filter(model.id == id).first()
 
     @staticmethod
     def insert(db: Session, model: Generic[T]):
@@ -39,63 +42,14 @@ class BaseRepo():
         db.delete(model)
         db.commit()
 
-    
-# class JWTRepo():
-
-#     def generate_token(data: dict, expires_delta: Optional[timedelta] = None):
-#         to_encode = data.copy()
-#         if expires_delta:
-#             expire = datetime.utcnow() + expires_delta
-#         else:
-#             expire = datetime.utcnow() + timedelta(minutes=15)
-#         to_encode.update({"exp": expire})
-#         encode_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
-        
-#         return encode_jwt
-
-#     def decode_token(token: str):
-#         try:
-#             decode_token = jwt.decode(token, SECRET_KEY, algorithm=[ALGORITHM])
-#             return decode_token if decode_token["expires"] >= datetime.time() else None
-#         except:
-#             return{}
-
-
-# class JWTBearer(HTTPBearer):
-
-#     def __init__(self, auto_error: bool = True):
-#         super(JWTBearer, self).__init__(auto_error=auto_error)
-
-#     async def __call__(self, request: Request):
-#         credentials: HTTPAuthorizationCredentials = await super(JWTBearer, self).__call__(request)
-
-#         if credentials:
-#             if not credentials.scheme == "Bearer":
-#                 raise HTTPException(
-#                     status_code=403, detail="Invalid authentication sheme.")
-#             if self.verfity_jwt(credentials.credentials):
-#                 raise HTTPException(
-#                     status_code=403, detail="Invalid token or expiredd token.")
-#             return credentials.credentials
-#         else:
-#             raise HTTPException(
-#                 status=403, detail="Invalid authorization code.")
-
-#     def verfity_jwt(Self, jwttoken: str):
-#         isTokenValid: bool = False
-
-#         try:
-#             payload = jwt.decode(jwttoken, SECRET_KEY, algorithm=[ALGORITHM])
-#         except:
-#             payload = None
-
-#         if payload:
-#             isTokenValid = True
-#         return isTokenValid
-    
 
 class UserRepo(BaseRepo):
-    
     @staticmethod
     def find_by_email(db:Session, model: Generic[T], email: str):
         return db.query(model).filter(model.email == email).first()
+    
+class RedisRepo(BaseRepo):
+    pass
+
+class RoleRepo(BaseRepo):
+    pass

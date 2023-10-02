@@ -1,6 +1,6 @@
-from typing import Generic, Optional, TypeVar, Dict
+from typing import Generic, List, Optional, TypeVar, Dict
 from pydantic.generics import GenericModel
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, EmailStr, Field
 
 T = TypeVar('T')
 
@@ -31,3 +31,7 @@ class RedisSaveSchema(BaseModel):
 
 # class RedisSchema(BaseModel):
 #     permissions: json()
+
+
+class EmailSchema(BaseModel):
+    emails: List[EmailStr]
