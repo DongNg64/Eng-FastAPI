@@ -39,7 +39,7 @@ async def signup(request: SignupRequest, db: Session = Depends(get_db)):
                      created_date=datetime.now())
         UserRepo.insert(db, _user)
         # send mail when signup success
-        send_mail()
+        send_mail(template=template, email=list(_user.email), subject=subject)
         return ResponseSchema(code="200", status="Ok", message="Success save data")
     except Exception as error:
         print(error.args)
@@ -90,22 +90,11 @@ async def refresh(Authorize: AuthJWT = Depends()):
         return ResponseSchema(code="500", status="Internal Server Error", message="Internal Server Error")
 
 
-
-@router.get('test')
-async def test(check: bool = Depends(auth_required)):
-    check_auth_valid(check)
-    print('oke')
-
-
-
 def get_permissions_of_user(role_id: str, db: Session = Depends(get_db)):
     role_permission = db.query(RolePermission).filter(RolePermission.role_id == role_id).all()
     permissions = [item.permissions.resource for item in role_permission]
     return permissions
 
 
-def check_auth_valid(check: bool):
-    if check is False:
-        return ResponseSchema(code="400", status="Error", message="You do not permission")
     
 

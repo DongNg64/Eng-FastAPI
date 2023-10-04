@@ -1,14 +1,11 @@
 from fastapi import FastAPI
 import uvicorn
-import app.sql_app.models as model
 
 from app.routers import auth
-from app.sql_app.database import engine
 from app.routers.init_db import migrate_db_default
 from app.routers.manage import user
 
 app = FastAPI()
-model.Base.metadata.create_all(bind=engine)
 
 
 app.include_router(auth.router, prefix="/auth")

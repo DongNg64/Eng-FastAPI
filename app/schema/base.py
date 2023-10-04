@@ -18,7 +18,8 @@ class ResponseSchema(BaseModel):
     status: str
     message: str
     result: Optional[T] = None
-    
+
+
 class TokenResponse(BaseModel):
     access_token :str
     token_type: str

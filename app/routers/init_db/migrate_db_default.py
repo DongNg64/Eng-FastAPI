@@ -3,6 +3,8 @@ import json
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
+from app.sql_app.database import engine
+import app.sql_app.models as model
 from app.schema.base import ResponseSchema
 from app.sql_app.database import get_db
 from app.sql_app.models import Permission, Role, RolePermission, User
@@ -13,6 +15,7 @@ router = APIRouter()
 @router.post("/")
 async def migrate_permission(db: Session = Depends(get_db)):
     try:
+        model.Base.metadata.create_all(bind=engine)
         with open('app/routers/init_db/role_default.json', encoding='utf-8') as file:
             data = json.loads(file.read())
         db.bulk_insert_mappings(Permission, data['permissions'])
