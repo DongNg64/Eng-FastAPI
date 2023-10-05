@@ -1,5 +1,8 @@
 from fastapi import FastAPI
 import uvicorn
+from fastapi_pagination import add_pagination
+from app.sql_app.database import engine
+import app.sql_app.models as model
 
 from app.routers import auth
 from app.routers.init_db import migrate_db_default
@@ -7,7 +10,7 @@ from app.routers.manage import user
 
 app = FastAPI()
 
-
+model.Base.metadata.create_all(bind=engine)
 app.include_router(auth.router, prefix="/auth")
 app.include_router(migrate_db_default.router, prefix="/migrate-permission")
 

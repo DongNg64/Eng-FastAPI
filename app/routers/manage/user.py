@@ -1,13 +1,14 @@
 from fastapi import APIRouter, Depends
 from fastapi_jwt_auth import AuthJWT
+
 from app.repository import RoleRepo, UserRepo
 from app.schema.base import ResponseSchema
-from app.schema.user import UserValidate
+from app.schema.user import UserValidate, UserSchema
 from app.sql_app.database import get_db
 from sqlalchemy.orm import Session
 from app.sql_app.models import Role, User
 
-from app.utils import auth_required
+from app.utils import auth_required, paginate
 
 router = APIRouter()
 
@@ -32,17 +33,27 @@ def get_menutab(check_permission: bool = Depends(auth_required), Authorize: Auth
         return ResponseSchema(code="500", status="Internal Server Error", message="Internal Server Error")
 
 
-@router.get('')
-async def get_users(params: UserValidate,
-                    db: Session = Depends(get_db),
-                    check_permission: bool = Depends(auth_required)):
+@router.get("")
+async def get_users(search: str = None,
+                    page: int = 1, page_size: int = 10,
+                    db: Session = Depends(get_db)):
     try:
-        if check_permission is False:
-            return ResponseSchema(code="400", status="Error", message="You do not permission")
+        # if check_permission is False:
+        #     return ResponseSchema(code="400", status="Error", message="You do not permission")
 
-        page = params.page
-        page_size = params.page_size
-        return ResponseSchema(code="200", status="Ok", message="Success save data")
+        # search = params.search
+        query = db.query(User)
+        if search and len(search) > 0:
+            text_like = "%{}%".format(search)
+            query = query.filter(User.full_name.ilike(text_like))
+        items, page, page_size, total = paginate(query, page, page_size)
+        result = {
+            "items": items,
+            "page": page,
+            "page_size": page_size,
+            "total": total
+        }
+        return ResponseSchema(code="200", message="Get all", status="Ok", result=result)
     except Exception as error:
         print(error.args)
         return ResponseSchema(code="500", status="Error", message="Internal Server Error")

@@ -11,7 +11,7 @@ from app.sql_app.models import Redis, User, RolePermission
 from datetime import datetime
 from fastapi_jwt_auth import AuthJWT
 
-from app.utils import ALGORITHM, auth_required, send_mail
+from app.utils import ALGORITHM, auth_required
 
 router = APIRouter()
 

@@ -36,30 +36,41 @@ def auth_required(request: Request, db: SessionLocal = Depends(get_db), Authoriz
 
 
 # send mail
-conf = ConnectionConfig(
-   MAIL_USERNAME="dong642001@gmail.com",
-   MAIL_PASSWORD="test",
-   MAIL_PORT=587,
-   MAIL_SERVER="smtp.gmail.com",
-   MAIL_TLS=True,
-   MAIL_SSL=False
-)
+# conf = ConnectionConfig(
+#    MAIL_USERNAME="dong642001@gmail.com",
+#    MAIL_PASSWORD="test",
+#    MAIL_PORT=587,
+#    MAIL_SERVER="smtp.gmail.com",
+#    MAIL_TLS=True,
+#    MAIL_SSL=False
+# )
 
 
-def send_mail(template: str, email: list, subject: str):
-    message = MessageSchema(
-        subject=subject,
-        recipients=email,
-        body=template,
-        subtype="html"
-        )
- 
-    fm = FastMail(conf)
-    try:
-        fm.send_message(message)
-        print('Send mail success!!!')
-        return True
-    except Exception as error:
-        error_message = str(error.args)
-        print(error_message)
-        return False
+# def send_mail(template: str, email: list, subject: str):
+#     message = MessageSchema(
+#         subject=subject,
+#         recipients=email,
+#         body=template,
+#         subtype="html"
+#         )
+#
+#     fm = FastMail(conf)
+#     try:
+#         fm.send_message(message)
+#         print('Send mail success!!!')
+#         return True
+#     except Exception as error:
+#         error_message = str(error.args)
+#         print(error_message)
+#         return False
+
+
+# pagination
+def paginate(query, page, page_size):
+    if page <= 0:
+        raise AttributeError('page needs to be >= 1')
+    if page_size <= 0:
+        raise AttributeError('page_size needs to be >= 1')
+    items = query.limit(page_size).offset((page - 1) * page_size).all()
+    total = query.order_by(None).count()
+    return items, page, page_size, total

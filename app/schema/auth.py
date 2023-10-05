@@ -11,7 +11,8 @@ class LoginRequest(BaseModel):
 class SignupRequest(BaseModel):
     full_name: str
     email: str
-    avatar_url: Union[str, None] = None
+    # avatar_url: Union[str, None] = None
+    phone: str
     password: str
 
 
