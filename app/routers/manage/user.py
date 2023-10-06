@@ -1,8 +1,10 @@
+from typing import List
+
 from fastapi import APIRouter, Depends
 from fastapi_jwt_auth import AuthJWT
 
 from app.repository import RoleRepo, UserRepo
-from app.schema.base import ResponseSchema
+from app.schema.base import ResponseSchema, Pagination
 from app.schema.user import UserValidate, UserSchema
 from app.sql_app.database import get_db
 from sqlalchemy.orm import Session
@@ -33,7 +35,7 @@ def get_menutab(check_permission: bool = Depends(auth_required), Authorize: Auth
         return ResponseSchema(code="500", status="Internal Server Error", message="Internal Server Error")
 
 
-@router.get("")
+@router.get("", response_model=List[UserSchema])
 async def get_users(search: str = None,
                     page: int = 1, page_size: int = 10,
                     db: Session = Depends(get_db)):
@@ -47,13 +49,15 @@ async def get_users(search: str = None,
             text_like = "%{}%".format(search)
             query = query.filter(User.full_name.ilike(text_like))
         items, page, page_size, total = paginate(query, page, page_size)
-        result = {
-            "items": items,
-            "page": page,
-            "page_size": page_size,
-            "total": total
-        }
-        return ResponseSchema(code="200", message="Get all", status="Ok", result=result)
+        response = UserSchema(
+            code="200",
+            status="success",
+            message="Get all",
+            result=items,
+            pagination=Pagination(total=total, page=page, page_size=page_size)
+        )
+
+        return response
     except Exception as error:
         print(error.args)
         return ResponseSchema(code="500", status="Error", message="Internal Server Error")

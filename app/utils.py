@@ -68,9 +68,9 @@ def auth_required(request: Request, db: SessionLocal = Depends(get_db), Authoriz
 # pagination
 def paginate(query, page, page_size):
     if page <= 0:
-        raise AttributeError('page needs to be >= 1')
+        raise AttributeError('page needs >= 1')
     if page_size <= 0:
-        raise AttributeError('page_size needs to be >= 1')
+        raise AttributeError('page_size needs >= 1')
     items = query.limit(page_size).offset((page - 1) * page_size).all()
     total = query.order_by(None).count()
     return items, page, page_size, total

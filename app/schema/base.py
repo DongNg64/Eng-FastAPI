@@ -13,11 +13,18 @@ class RequestSchema(BaseModel):
     parameter: Parameter = Field(...)
 
 
+class Pagination(BaseModel):
+    total: int
+    page: int
+    page_size: int
+
+
 class ResponseSchema(BaseModel):
     code: str
     status: str
     message: str
     result: Optional[T] = None
+    pagination: Optional[Pagination] = None
 
 
 class TokenResponse(BaseModel):
