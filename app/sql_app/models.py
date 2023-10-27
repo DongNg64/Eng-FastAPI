@@ -1,8 +1,10 @@
+from fastapi import Depends
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, DateTime, Text
-from sqlalchemy.orm import relationship
-import datetime
+from sqlalchemy.orm import relationship, column_property
+from sqlalchemy.orm import Session
 
-from .database import Base
+
+from .database import Base, get_db
 
 
 class User(Base):
@@ -16,6 +18,12 @@ class User(Base):
     hashed_password = Column(String(255))
     type = Column(String(50))
     role_id = Column(String(50), ForeignKey("roles.id"))
+
+    role = relationship("Role")
+
+    @property
+    def role_name(self, db: Session = Depends(get_db)):
+        return self.role.key
 
 
 class Role(Base):

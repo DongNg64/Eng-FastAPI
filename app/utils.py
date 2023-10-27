@@ -25,14 +25,19 @@ def get_config():
     return Settings()
 
 
-def auth_required(request: Request, db: SessionLocal = Depends(get_db), Authorize: AuthJWT = Depends()):
-    Authorize.jwt_required()
-    user_id = Authorize.get_raw_jwt()["user_id"]
-    permission_request = request.method.lower() + request.scope['route'].path
-    permission_list = db.query(Redis.permissions).filter(Redis.user_id == user_id).first()
-    if permission_request not in json.loads(permission_list.permissions):
+def auth_required(request: Request, db: SessionLocal = Depends(get_db),
+                  Authorize: AuthJWT = Depends()):
+    try:
+        Authorize.jwt_required()
+        user_id = Authorize.get_raw_jwt()["user_id"]
+        permission_request = request.method.lower() + request.scope['route'].path
+        permission_list = db.query(Redis.permissions).filter(Redis.user_id == user_id).first()
+        if permission_request not in json.loads(permission_list.permissions):
+            return False
+        return True
+    except Exception as error:
+        print(error.args)
         return False
-    return True
 
 
 # send mail

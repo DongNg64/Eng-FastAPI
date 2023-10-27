@@ -23,7 +23,7 @@ class BaseRepo():
         return db.query(model).filter(model.id == id).all()
     
     @staticmethod
-    def retrieve_by_id(db: Session, model: Generic[T], id: int):
+    def retrieve_by_id(db: Session, model: Generic[T], id: str):
         return db.query(model).filter(model.id == id).first()
 
     @staticmethod
@@ -47,9 +47,12 @@ class UserRepo(BaseRepo):
     @staticmethod
     def find_by_email(db:Session, model: Generic[T], email: str):
         return db.query(model).filter(model.email == email).first()
-    
+
+
+
 class RedisRepo(BaseRepo):
     pass
+
 
 class RoleRepo(BaseRepo):
     pass
