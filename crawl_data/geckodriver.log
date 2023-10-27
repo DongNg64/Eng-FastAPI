@@ -1,0 +1,53 @@
+1698399965297	geckodriver	INFO	Listening on 127.0.0.1:50861
+1698399968411	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "50862" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\boot.ai\\AppData\\Local\\Temp\\rust_mozprofileTr8niQ"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1698399970017	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1698399970187	Marionette	INFO	Listening on port 50873
+WebDriver BiDi listening on ws://127.0.0.1:50862
+Read port: 50873
+1698399970555	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+DevTools listening on ws://127.0.0.1:50862/devtools/browser/f9747249-bcb6-4710-a60d-529eac16bd68
+JavaScript warning: https://www.googletagmanager.com/gtag/js?id=G-64Z8KN7V8D&l=dataLayer&cx=c, line 493: Script terminated by timeout at:
+aa.qh@https://www.googletagmanager.com/gtag/js?id=G-64Z8KN7V8D&l=dataLayer&cx=c:493:89
+get@https://www.googletagmanager.com/gtag/js?id=G-64Z8KN7V8D&l=dataLayer&cx=c:491:119
+stop@https://www.googletagmanager.com/gtag/js?id=G-64Z8KN7V8D&l=dataLayer&cx=c:491:87
+aa.Ek/c/<@https://www.googletagmanager.com/gtag/js?id=G-64Z8KN7V8D&l=dataLayer&cx=c:491:412
+
+1698399985234	Marionette	INFO	Stopped listening on port 50873
+Dynamically enable window occlusion 1
+1698400196115	geckodriver	INFO	Listening on 127.0.0.1:51576
+memory allocation of 20983060 bytes failed
+1698400298462	geckodriver	INFO	Listening on 127.0.0.1:51775
+1698400305249	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "51776" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\boot.ai\\AppData\\Local\\Temp\\rust_mozprofileDeSpK0"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1698400305953	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1698400306025	Marionette	INFO	Listening on port 51790
+WebDriver BiDi listening on ws://127.0.0.1:51776
+Read port: 51790
+1698400306379	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+A content process crashed and MOZ_CRASHREPORTER_SHUTDOWN is set, shutting down
+1698400308882	Marionette	INFO	Stopped listening on port 51790
+Dynamically enable window occlusion 1
+1698400308897	CDP	WARN	Failed to remove undefined (Could not parse path (undefined): NS_ERROR_FILE_UNRECOGNIZED_PATH)
+console.error: (new TypeError("NetworkError: Network request failed", "resource://services-settings/Utils.sys.mjs", 229))
+1698400353244	geckodriver	INFO	Listening on 127.0.0.1:51841
+1698400360276	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "51842" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\boot.ai\\AppData\\Local\\Temp\\rust_mozprofilehigLtL"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+1698400360923	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1698400361025	Marionette	INFO	Listening on port 51855
+WebDriver BiDi listening on ws://127.0.0.1:51842
+Read port: 51855
+1698400361413	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+A content process crashed and MOZ_CRASHREPORTER_SHUTDOWN is set, shutting down
+1698400362755	Marionette	INFO	Stopped listening on port 51855
+Dynamically enable window occlusion 1
+1698400362774	CDP	WARN	Failed to remove undefined (Could not parse path (undefined): NS_ERROR_FILE_UNRECOGNIZED_PATH)
+A content process crashed and MOZ_CRASHREPORTER_SHUTDOWN is set, shutting down
+JavaScript error: chrome://global/content/elements/browser-custom-element.js, line 645: TypeError: this.browsingContext is null
+console.error: (new TypeError("NetworkError: Network request failed", "resource://services-settings/Utils.sys.mjs", 229))
