@@ -1,26 +1,27 @@
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-from secret import person  
 import time
 
 options = webdriver.ChromeOptions() 
-options.add_argument("--window-size=1920,1080")
-options.add_argument(r"user-data-dir=C:\Users\boot.ai\AppData\Local\Google\Chrome\User Data\Profile 1") #Path to your chrome profile
-options.add_argument("--profile-directory=Default")
+options.add_argument("--start-maximized")
+options.add_argument('--no-sandbox')
+options.add_argument("user-data-dir=C:\\Users\\boot.ai\\AppData\\Local\\Google\\Chrome\\User Data")
+options.add_argument('--profile-directory=Profile 1')
 options.add_experimental_option("detach", True)
-driver = webdriver.Chrome(ChromeDriverManager().install(),options=options)
+driver = webdriver.Chrome(options)
 
 driver.get("https://study4.com/")
 
-driver.find_element(By.CSS_SELECTOR, "a[href='/login/']").click()
-driver.find_element(By.CSS_SELECTOR, "span[data-href='/oauth/login/google-oauth2/?next=']").click()
-email, password = person()
-driver.find_element(By.CSS_SELECTOR, "input").send_keys(email)
-driver.find_element(By.CSS_SELECTOR, "input").send_keys(Keys.ENTER)
-time.sleep(5)
-driver.find_element(By.CSS_SELECTOR, "input").send_keys(password)
-driver.find_element(By.CSS_SELECTOR, "input").send_keys(Keys.ENTER)
-time.sleep(5)
+# login
+# driver.find_element(By.CSS_SELECTOR, "a[href='/login/']").click()
+# driver.find_element(By.CSS_SELECTOR, "span[data-href='/oauth/login/google-oauth2/?next=']").click()
+# driver.find_element(By.CLASS_NAME, "d2laFc").click()
+
+driver.find_element(By.CSS_SELECTOR, "a[href='/tests/']").click()
+driver.find_element(By.CSS_SELECTOR, "a[href='/tests/toeic/']").click()
+driver.find_element(By.CSS_SELECTOR, "a[href='/tests/4590/ets-23-toeic-test-1/']").click()
+driver.find_element(By.CSS_SELECTOR, "a[href='/tests/4590/ets-23-toeic-test-1/results/8860453/']").click()
+driver.find_element(By.CSS_SELECTOR, "a[href='/tests/4590/ets-23-toeic-test-1/results/8860453/details/']").click()
+                                        href="/tests/4590/ets-23-toeic-test-1/results/8860453/details/"
+# driver.find_element(By.CLASS_NAME, "btn btn-sm btn-sky").click()
+
