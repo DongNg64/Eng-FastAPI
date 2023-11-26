@@ -1,3 +1,4 @@
+import bisect
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -8,7 +9,7 @@ import time
 options = webdriver.ChromeOptions() 
 options.add_argument("--start-maximized")
 options.add_argument('--no-sandbox')
-options.add_argument("user-data-dir=C:\\Users\\boot.ai\\AppData\\Local\\Google\\Chrome\\User Data")
+options.add_argument("user-data-dir=C:\\Users\\Nguyen Hung\\AppData\\Local\\Google\\Chrome\\User Data")
 options.add_argument('--profile-directory=Profile 1')
 options.add_experimental_option("detach", True)
 driver = webdriver.Chrome(options)
@@ -35,7 +36,8 @@ time.sleep(5)
 # get image
 images = driver.execute_script("return Array.from(document.querySelectorAll('.lazyel.entered.loaded')).map(item => item.src)")
 # click 'Hiện transcript'
-driver.execute_script(f"return Array.from(document.querySelectorAll('.tab-content .test-questions-wrapper > .context-wrapper > .context-content.context-transcript.text-highlightable > p > a')).slice(0, {len(images)}).forEach(item=>item.click())")
+# driver.execute_script(f"return Array.from(document.querySelectorAll('.tab-content .test-questions-wrapper > .context-wrapper > .context-content.context-transcript.text-highlightable > p > a')).slice(0, {len(images)}).forEach(item=>item.click())")
+driver.execute_script(f"return Array.from(document.querySelectorAll('.tab-content .test-questions-wrapper > .context-wrapper > .context-content.context-transcript.text-highlightable > p > a')).forEach(item=>item.click())")
 time.sleep(5)
 # get questions
 driver.execute_script("return Array.from(document.querySelectorAll('.tab-content .test-questions-wrapper > .context-wrapper > .context-content.context-transcript.text-highlightable > .collapse.show')).map(item => item.innerText)")
@@ -43,4 +45,17 @@ driver.execute_script("return Array.from(document.querySelectorAll('.tab-content
 driver.execute_script("return Array.from(document.querySelectorAll('.tab-content .test-questions-wrapper > .question-wrapper > .question-content.text-highlightable > .mt-2.text-success')).map(item => item.innerText).filter(item => !item.includes('\\n'))")
 
 # click next button
-driver.find_element(By.XPATH, "").click()
+driver.execute_script("document.querySelectorAll('.nextpart-wrapper.mt-5 > .nextpart')[0].click()")
+
+# part 2
+# click 'Hiện transcript'
+# driver.execute_script("return Array.from(document.querySelectorAll('.tab-content .test-questions-wrapper > .context-wrapper > .context-content.context-transcript.text-highlightable > p > a')).slice(0, 24).forEach(item=>item.click())")
+# get questions
+driver.execute_script("return Array.from(document.querySelectorAll('.tab-content .test-questions-wrapper > .context-wrapper > .context-content.context-transcript.text-highlightable > .collapse.show')).map(item => item.innerText)")
+# get answers
+driver.execute_script("return Array.from(document.querySelectorAll('.tab-content .test-questions-wrapper > .question-wrapper > .question-content.text-highlightable > .mt-2.text-success')).map(item => item.innerText).filter(item => !item.includes('\\n'))")
+# click next button
+driver.execute_script("document.querySelectorAll('.nextpart-wrapper.mt-5 > .nextpart')[1].click()")
+
+# part 3
+
